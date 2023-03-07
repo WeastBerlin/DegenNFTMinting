@@ -3,23 +3,39 @@
 npx create-react-app full-mint-website
 npm i hardhat
 npx hardhat
-npm i @openzeppelin/contracts
-npm i @chakra-ui/react @emotion/react @emotion/styled framer-motion
-npm i dotenv
-npm i @nomiclabs/hardhat-etherscan
-npx hardhat run scripts/deploy.js --network goerli
-npx hardhat verify --network goerli 0x50aD78AC00C06f45308abe71295DfcD15bbD03E9
+npm i @openzeppelin/contracts @chakra-ui/react @emotion/react @emotion/styled framer-motion dotenv @nomiclabs/hardhat-etherscan
+npx hardhat run scripts/deploy.js --network fuji
+npx hardhat verify --network fuji CONTRACTNAME
+npm start
 
-# Sample Hardhat Project
+# Important
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a script that deploys that contract.
+-Fill .env
 
-Try running some of the following tasks:
+-Choose, after how many mints the contract pauses
+-Choose the "maxSupply", "maxPerWallet" & "mintPrice"
 
-```shell
+-When adding the baseURI to the function, dont forget to add a "/" at the end of it. For example: "ipfs://bafybeiab6pmlkgcpyicnclnkpe7apat5sq4socuh7ljrh2jqhrrjnejhnu/"
+
+-Delete the SAMPLENAME.json file out of "src" & the folder "artifacts/contracts/SAMPLENAME.sol" before deploying new contract
+-Add new contractaddress into "MainMint.js"
+-Adjust Mint Price, Total Mints & max Increment in "MainMint.js" if needed
+-Copy Paste the new SAMPLENAME.json which was created in "artifacts/contracts/SAMPLENAME.sol/SAMPLENAME.json"
+
+-🔴Enable "isPublicMintEnabled" by writing "true"
+-🔴Set a "withdrawWallet" with "setWithdrawWallet"
+
+# Hashlips Important
+
+Delete "build" for a new project
+
+# Hardhat Commands
+
+npx hardhat
 npx hardhat help
 npx hardhat test
 REPORT_GAS=true npx hardhat test
 npx hardhat node
 npx hardhat run scripts/deploy.js
-```
+npx hardhat run test/test.js
+npx hardhat verify --network NETWORKNAME CONTRACTNAME

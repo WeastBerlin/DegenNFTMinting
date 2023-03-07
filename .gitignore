@@ -1,12 +1,16 @@
 node_modules
-
-node_modules
 .env
 coverage
 coverage.json
 typechain
 typechain-types
+.vscode
+layers
+old contracts
 
+# Images
+MotionElements_earth-loop-animation.gif
+neonfutrestkgif.gif
 # Hardhat files
 cache
 artifacts

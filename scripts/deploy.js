@@ -1,12 +1,12 @@
 const hre = require("hardhat");
 
 async function main() {
-  const RoboPunksNFT = await hre.ethers.getContractFactory("RoboPunksNFT");
-  const roboPunksNFT = await RoboPunksNFT.deploy(); //Empty because our constructor is empty
+  const CyberDegensNFT = await hre.ethers.getContractFactory("CyberDegensNFT");
+  const cyberDegensNFT = await CyberDegensNFT.deploy(); //Empty because our constructor is empty
 
-  await roboPunksNFT.deployed();
+  await cyberDegensNFT.deployed();
 
-  console.log("RoboPunksNFT deployed to:", roboPunksNFT.address);
+  console.log("CyberDegensNFT deployed to:", cyberDegensNFT.address);
 }
 
 // We recommend this pattern to be able to use async/await everywhere

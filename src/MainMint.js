@@ -1,12 +1,50 @@
 import { useState, useEffect } from "react";
 import { ethers, BigNumber } from "ethers";
 import { Box, Button, Flex, Text, Input } from "@chakra-ui/react";
-import RoboPunksNFT from "./RoboPunksNFT.json";
+import CyberDegensNFT from "./CyberDegensNFT.json";
+import axios from "axios";
 
-const RoboPunksNFTAddress = "0x969622b6C44d27CC7b59dA6D7Cb8783E15925a58";
+const CyberDegensNFTAddress = "0x51A9AF55a3E435b06AF5cE8620F75247368aef22";
+const nftEndpoint = process.env.REACT_APP_NFTAPIADDRESS;
+
+const TypewriterText = ({ text }) => {
+  const [displayText, setDisplayText] = useState("");
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isTyping, setIsTyping] = useState(true);
+
+  useEffect(() => {
+    if (isTyping) {
+      const intervalId = setInterval(() => {
+        setCurrentIndex((prevIndex) => prevIndex + 1);
+      }, 75);
+
+      return () => clearInterval(intervalId);
+    }
+  }, [isTyping]);
+
+  useEffect(() => {
+    if (currentIndex < text.length) {
+      setDisplayText(text.slice(0, currentIndex + 1));
+    } else {
+      setIsTyping(false);
+    }
+  }, [currentIndex, text]);
+
+  return (
+    <Text
+      fontSize="20px"
+      letterSpacing="-5.5%"
+      fontFamily="VT323"
+      textShadow="0 2px 2px #000000"
+    >
+      {displayText}
+    </Text>
+  );
+};
 
 const MainMint = ({ accounts, setAccounts }) => {
   const [mintAmount, setMintAmount] = useState(1);
+  const [tokenSupply, setTokenSupply] = useState(0);
   const isConnected = Boolean(accounts[0]);
 
   useEffect(() => {
@@ -15,6 +53,15 @@ const MainMint = ({ accounts, setAccounts }) => {
         setAccounts(accounts);
       });
     }
+
+    axios
+      .get(nftEndpoint)
+      .then((response) => {
+        setTokenSupply(response.data.result);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
 
   async function handleMint() {
@@ -22,13 +69,14 @@ const MainMint = ({ accounts, setAccounts }) => {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner();
       const contract = new ethers.Contract(
-        RoboPunksNFTAddress,
-        RoboPunksNFT.abi,
+        CyberDegensNFTAddress,
+        CyberDegensNFT.abi,
         signer
       );
       try {
         const response = await contract.mint(BigNumber.from(mintAmount), {
           value: ethers.utils.parseEther((0.001 * mintAmount).toString()),
+          /*gasLimit: 5000000,*/
         });
         console.log("response: ", response);
       } catch (err) {
@@ -43,7 +91,7 @@ const MainMint = ({ accounts, setAccounts }) => {
   };
 
   const handleIncrement = () => {
-    if (mintAmount >= 10) return;
+    if (mintAmount >= 3) return;
     setMintAmount(mintAmount + 1);
   };
 
@@ -52,23 +100,29 @@ const MainMint = ({ accounts, setAccounts }) => {
       <Box width="520px">
         <div>
           <Text fontSize="32px" textShadow="0 5px #000000">
-            RoboPunks
+            Cyber Degens
           </Text>
-          <Text
-            fontSize="30px"
-            letterSpacing="-5.5%"
-            fontFamily="VT323"
-            textShadow="0 2px 2px #000000"
-          >
-            It's 2420. Can the degen RoboPunks safe humans from further
-            degeneracy? Find out to find out lmao
-          </Text>
+          <TypewriterText
+            text="
+            The Cyber Degens were born as a response to the 2008 financial
+            crisis. They are the pioneers of the blockchain world, and they have
+            always looked out for one another. Cyber Degens are genetically
+            superior thanks to their built-in machine learning algorithms,
+            making them a unique and innovative collective. The Cyber Degen collection
+            is for thos who want to see how things are built behind closed
+            doors.
+            By owning a Cyber Degen NFT, you will become part of the
+            degen-house.com family."
+          />
+          <div>
+            <Text fontSize="12px">Total NFTs minted: {tokenSupply}/100</Text>
+          </div>
         </div>
         {isConnected ? (
           <div>
             <Flex align="center" justify="center">
               <Button
-                backgroundColor="#D6517D"
+                backgroundColor="#6A5ACD"
                 borderRadius="5px"
                 boxShadow="0px 2px 2px 1px #0F0F0F"
                 color="white"
@@ -83,6 +137,8 @@ const MainMint = ({ accounts, setAccounts }) => {
               <Input
                 readOnly
                 fontFamily="inherit"
+                color="white"
+                backgroundColor="black"
                 width="100px"
                 height="40px"
                 textAlign="center"
@@ -92,7 +148,7 @@ const MainMint = ({ accounts, setAccounts }) => {
                 value={mintAmount}
               />
               <Button
-                backgroundColor="#D6517D"
+                backgroundColor="#6A5ACD"
                 borderRadius="5px"
                 boxShadow="0px 2px 2px 1px #0F0F0F"
                 color="white"
@@ -106,7 +162,7 @@ const MainMint = ({ accounts, setAccounts }) => {
               </Button>
             </Flex>
             <Button
-              backgroundColor="#D6617D"
+              backgroundColor="#6A5ACD"
               borderRadius="5px"
               boxShadow="0px 2px 2px 1px #0F0F0F"
               color="white"
@@ -125,8 +181,8 @@ const MainMint = ({ accounts, setAccounts }) => {
             fontSize="30px"
             letterSpacing="-5.5%"
             fontFamily="VT323"
-            textShadow="0 3px #000000"
-            color="#D6517D"
+            textShadow="0 5px #000000"
+            color="white"
           >
             You must be connected to Mint
           </Text>

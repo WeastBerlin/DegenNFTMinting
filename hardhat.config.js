@@ -12,8 +12,20 @@ module.exports = {
       url: process.env.REACT_APP_GOERLI_RPC_URL,
       accounts: [process.env.REACT_APP_PRIVATE_KEY],
     },
+    fuji: {
+      url: process.env.REACT_APP_FUJI_RPC_URL,
+      accounts: [process.env.REACT_APP_PRIVATE_KEY],
+    },
+    avalanche: {
+      url: process.env.REACT_APP_AVALANCHE_RPC_URL,
+      accounts: [process.env.REACT_APP_PRIVATE_KEY],
+    },
   },
   etherscan: {
-    apiKey: process.env.REACT_APP_ETHERSCAN_KEY,
+    apiKey: {
+      goerli: process.env.REACT_APP_ETHERSCAN_KEY,
+      avalancheFujiTestnet: process.env.REACT_APP_SNOWTRACE_KEY,
+      avalanche: process.env.REACT_APP_SNOWTRACE_KEY,
+    },
   },
 };
