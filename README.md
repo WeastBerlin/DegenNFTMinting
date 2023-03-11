@@ -27,6 +27,7 @@ npm start
 
 # Hashlips Important
 
+We have used hashlips to generate our layers
 Delete "build" for a new project
 
 # Hardhat Commands
