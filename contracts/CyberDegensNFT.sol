@@ -24,6 +24,8 @@ contract CyberDegensNFT is ERC721, ERC721Burnable, Ownable {
     mapping(address => uint256[]) private _ownerTokens;
     uint256 public balance;
     bool public paused = false;
+    mapping(address => bool) public whitelist;
+    bool public isWhitelistEnabled = false;
 
     constructor() payable ERC721("Cyber Degens", "CD") {
         //set the minting price MUST MATCH WITH FRONTEND PRICE OR THRWOS AN ERROR
@@ -77,7 +79,6 @@ contract CyberDegensNFT is ERC721, ERC721Burnable, Ownable {
     }
 
     function mint(uint256 quantity_) public payable {
-        require(isPublicMintEnabled, "minting not enabled");
         require(!paused);
         require(msg.value == quantity_ * mintPrice, "wrong mint value");
         require(totalSupply + quantity_ <= maxSupply, "sold out");
@@ -85,6 +86,10 @@ contract CyberDegensNFT is ERC721, ERC721Burnable, Ownable {
             walletMints[msg.sender] + quantity_ <= maxPerWallet,
             "exceed max wallet"
         );
+
+        if (isWhitelistEnabled) {
+            require(whitelist[msg.sender], "not whitelisted");
+        }
 
         for (uint256 i = 0; i < quantity_; i++) {
             uint256 newTokenId = totalSupply + 1;
@@ -168,5 +173,23 @@ contract CyberDegensNFT is ERC721, ERC721Burnable, Ownable {
         if (to != address(0)) {
             _ownerTokens[to].push(tokenId);
         }
+    }
+
+    function addToWhitelist(address[] memory addresses_) public onlyOwner {
+        for (uint256 i = 0; i < addresses_.length; i++) {
+            whitelist[addresses_[i]] = true;
+        }
+    }
+
+    function removeFromWhitelist(address[] memory addresses_) public onlyOwner {
+        for (uint256 i = 0; i < addresses_.length; i++) {
+            whitelist[addresses_[i]] = false;
+        }
+    }
+
+    function setIsWhitelistEnabled(
+        bool isWhitelistEnabled_
+    ) external onlyOwner {
+        isWhitelistEnabled = isWhitelistEnabled_;
     }
 }

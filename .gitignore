@@ -8,6 +8,8 @@ typechain-types
 layers
 old contracts
 layergenerator
+.vscode
+newcontracts
 
 # Images
 MotionElements_earth-loop-animation.gif

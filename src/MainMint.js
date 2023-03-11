@@ -4,7 +4,7 @@ import { Box, Button, Flex, Text, Input } from "@chakra-ui/react";
 import CyberDegensNFT from "./CyberDegensNFT.json";
 import axios from "axios";
 
-const CyberDegensNFTAddress = "0x51A9AF55a3E435b06AF5cE8620F75247368aef22";
+const CyberDegensNFTAddress = "0x9922ae111031791C609dE0D5bFafB99aa6b673dc";
 const nftEndpoint = process.env.REACT_APP_NFTAPIADDRESS;
 
 const TypewriterText = ({ text }) => {
