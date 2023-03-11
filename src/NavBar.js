@@ -57,7 +57,7 @@ const NavBar = ({ accounts, setAccounts }) => {
         <Link href="https://www.degen-house.com">
           <Image src={Degenhouse} boxsize="15px" margin="0 10px" />
         </Link>
-        <Link href="https://testnet.snowtrace.io">
+        <Link href="https://testnet.snowtrace.io/address/0x9922ae111031791C609dE0D5bFafB99aa6b673dc">
           <Image src={Avax} boxsize="15px" margin="0 5px" />
         </Link>
       </Flex>
