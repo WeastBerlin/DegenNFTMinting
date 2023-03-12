@@ -62,7 +62,7 @@ const MainMint = ({ accounts, setAccounts }) => {
       .catch((error) => {
         console.log(error);
       });
-  }, [setAccounts]);
+  }, []);
 
   async function handleMint() {
     if (window.ethereum) {
