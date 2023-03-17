@@ -33,7 +33,7 @@ const TypewriterText = ({ text }) => {
   return (
     <Text
       fontSize="20px"
-      letterSpacing="-5.5%"
+      letterSpacing="-7.5%"
       fontFamily="VT323"
       textShadow="0 2px 2px #000000"
     >
