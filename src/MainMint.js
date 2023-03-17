@@ -75,7 +75,7 @@ const MainMint = ({ accounts, setAccounts }) => {
       );
       try {
         const response = await contract.mint(BigNumber.from(mintAmount), {
-          value: ethers.utils.parseEther((0.001 * mintAmount).toString()),
+          value: ethers.utils.parseEther((0 * mintAmount).toString()),
           /*gasLimit: 5000000,*/
         });
         console.log("response: ", response);
