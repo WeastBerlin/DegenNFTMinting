@@ -2,6 +2,9 @@ import { useState, useEffect } from "react";
 import { ethers, BigNumber } from "ethers";
 import { Box, Button, Flex, Text, Input } from "@chakra-ui/react";
 import CyberDegensNFT from "./CyberDegensNFT.json";
+import snoop from "./assets/other/snoop-dance.gif";
+import confetti from "./assets/other/confetti.gif";
+import airHornSound from "./assets/other/Airhorn.mp3";
 import axios from "axios";
 
 const CyberDegensNFTAddress = "0x9922ae111031791C609dE0D5bFafB99aa6b673dc";
@@ -16,7 +19,7 @@ const TypewriterText = ({ text }) => {
     if (isTyping) {
       const intervalId = setInterval(() => {
         setCurrentIndex((prevIndex) => prevIndex + 1);
-      }, 100);
+      }, 65);
 
       return () => clearInterval(intervalId);
     }
@@ -46,6 +49,8 @@ const MainMint = ({ accounts, setAccounts }) => {
   const [mintAmount, setMintAmount] = useState(1);
   const [tokenSupply, setTokenSupply] = useState(0);
   const isConnected = Boolean(accounts[0]);
+  const [showGif, setShowGif] = useState(false);
+  const airHornAudio = new Audio(airHornSound);
 
   useEffect(() => {
     if (window.ethereum) {
@@ -79,6 +84,9 @@ const MainMint = ({ accounts, setAccounts }) => {
           /*gasLimit: 5000000,*/
         });
         console.log("response: ", response);
+        setShowGif(true);
+        setTimeout(() => setShowGif(false), 10000);
+        airHornAudio.play();
       } catch (err) {
         console.log("error", err);
       }
@@ -174,6 +182,16 @@ const MainMint = ({ accounts, setAccounts }) => {
             >
               Mint Now
             </Button>
+            {showGif && (
+              <Box
+                position="absolute"
+                top="50%"
+                left="50%"
+                transform="translate(-50%, -50%)"
+              >
+                <img src={confetti} alt="confetti" />
+              </Box>
+            )}
           </div>
         ) : (
           <Text
@@ -188,6 +206,9 @@ const MainMint = ({ accounts, setAccounts }) => {
           </Text>
         )}
       </Box>
+      <div style={{ position: "absolute", right: 0 }}>
+        {showGif && <img src={snoop} alt="Snoop dance" />}
+      </div>
     </Flex>
   );
 };
