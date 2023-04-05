@@ -29,13 +29,13 @@ contract CyberDegensNFT is ERC721, ERC721Burnable, Ownable {
 
     constructor() payable ERC721("Cyber Degens", "CD") {
         //set the minting price MUST MATCH WITH FRONTEND PRICE OR THRWOS AN ERROR
-        mintPrice = 0.001 ether;
+        mintPrice = 0 ether;
         //must start with 0
         totalSupply = 0;
         //maximum of NFTs minted
-        maxSupply = 3333;
+        maxSupply = 1111;
         //maximum of NFTs allowed to mint per wallet
-        maxPerWallet = 3333;
+        maxPerWallet = 1;
         //balance shown in block explorer
         balance = address(this).balance;
         //set withdraw wallet address
@@ -47,6 +47,8 @@ contract CyberDegensNFT is ERC721, ERC721Burnable, Ownable {
     ) external onlyOwner {
         isPublicMintEnabled = isPublicMintEnabled_;
     }
+
+    //TO DO ADD FUNCTION TO INCREASE maxPerWallet
 
     function setBaseTokenUri(string calldata baseTokenUri_) external onlyOwner {
         baseTokenUri = baseTokenUri_;
@@ -99,7 +101,7 @@ contract CyberDegensNFT is ERC721, ERC721Burnable, Ownable {
             walletMints[msg.sender]++;
             balance += msg.value;
 
-            if (totalSupply == 100) {
+            if (totalSupply == 111) {
                 isPublicMintEnabled = false;
             }
         }

@@ -3,8 +3,7 @@ import { ethers, BigNumber } from "ethers";
 import { Box, Button, Flex, Text, Input } from "@chakra-ui/react";
 import CyberDegensNFT from "./CyberDegensNFT.json";
 import snoop from "./assets/other/snoop-dance.gif";
-import confetti from "./assets/other/confetti.gif";
-import airHornSound from "./assets/other/Airhorn.mp3";
+import airHornSound from "./assets/other/YeahBoi.mp3";
 import axios from "axios";
 
 const CyberDegensNFTAddress = "0x9922ae111031791C609dE0D5bFafB99aa6b673dc";
@@ -182,16 +181,6 @@ const MainMint = ({ accounts, setAccounts }) => {
             >
               Mint Now
             </Button>
-            {showGif && (
-              <Box
-                position="absolute"
-                top="50%"
-                left="50%"
-                transform="translate(-50%, -50%)"
-              >
-                <img src={confetti} alt="confetti" />
-              </Box>
-            )}
           </div>
         ) : (
           <Text

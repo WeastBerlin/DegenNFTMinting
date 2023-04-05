@@ -1,6 +1,6 @@
 {
   "name": "degen-mint-dapp",
-  "version": "0.3.1 Beta",
+  "version": "0.5.1 Beta",
   "private": true,
   "dependencies": {
     "@chakra-ui/react": "^2.4.9",
