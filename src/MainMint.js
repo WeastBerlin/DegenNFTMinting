@@ -6,7 +6,7 @@ import snoop from "./assets/other/snoop-dance.gif";
 import airHornSound from "./assets/other/YeahBoi.mp3";
 import axios from "axios";
 
-const CyberDegensNFTAddress = "0x9922ae111031791C609dE0D5bFafB99aa6b673dc";
+const CyberDegensNFTAddress = "0x9F455ef98FCeF30775F9c6fCf91aAbb228F58675";
 const nftEndpoint = process.env.REACT_APP_NFTAPIADDRESS;
 
 const TypewriterText = ({ text }) => {
@@ -98,7 +98,7 @@ const MainMint = ({ accounts, setAccounts }) => {
   };
 
   const handleIncrement = () => {
-    if (mintAmount >= 3) return;
+    if (mintAmount >= 2) return;
     setMintAmount(mintAmount + 1);
   };
 
