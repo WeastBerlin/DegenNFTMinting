@@ -122,7 +122,7 @@ const MainMint = ({ accounts, setAccounts }) => {
             degen-house.com family."
           />
           <div>
-            <Text fontSize="12px">Total NFTs minted: {tokenSupply}/100</Text>
+            <Text fontSize="12px">Total NFTs minted: {tokenSupply}/111</Text>
           </div>
         </div>
         {isConnected ? (

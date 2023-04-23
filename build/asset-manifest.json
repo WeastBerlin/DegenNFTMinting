@@ -1,14 +1,16 @@
 {
   "files": {
     "main.css": "/static/css/main.1befadab.css",
-    "main.js": "/static/js/main.847d5ad0.js",
+    "main.js": "/static/js/main.19cd5a8c.js",
     "static/media/blue-and-green-dot.gif": "/static/media/blue-and-green-dot.27b9f40b084485d1813e.gif",
+    "static/media/snoop-dance.gif": "/static/media/snoop-dance.b7e01ebe028526ea5478.gif",
+    "static/media/YeahBoi.mp3": "/static/media/YeahBoi.3fe5b609e5737f01e439.mp3",
     "index.html": "/index.html",
     "main.1befadab.css.map": "/static/css/main.1befadab.css.map",
-    "main.847d5ad0.js.map": "/static/js/main.847d5ad0.js.map"
+    "main.19cd5a8c.js.map": "/static/js/main.19cd5a8c.js.map"
   },
   "entrypoints": [
     "static/css/main.1befadab.css",
-    "static/js/main.847d5ad0.js"
+    "static/js/main.19cd5a8c.js"
   ]
 }
