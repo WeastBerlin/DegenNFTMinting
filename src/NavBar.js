@@ -2,7 +2,7 @@ import { Button, Flex, Image, Link, Spacer } from "@chakra-ui/react";
 import Degenhouse from "./assets/social-media-icons/degehouseLogopurplecropped_56x70.png";
 import Avax from "./assets/social-media-icons/avax_64x64.png";
 
-const NETWORK_NAME = "Avalanche Fuji Testnet"; // Specify the network name here
+const NETWORK_NAME = "Avalanche C-Chain"; // Specify the network name here
 
 const NavBar = ({ accounts, setAccounts }) => {
   const isConnected = Boolean(accounts[0]);
