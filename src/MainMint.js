@@ -124,6 +124,14 @@ const MainMint = ({ accounts, setAccounts }) => {
           <div>
             <Text fontSize="12px">Total NFTs minted: {tokenSupply}/111</Text>
           </div>
+          <Text
+            color="red"
+            marginRight="5px"
+            fontSize={{ base: "sm", md: "md" }}
+          >
+            Please have your wallet configured to the AVAX C-Chain if you
+            haven't done that yet!
+          </Text>
         </div>
         {isConnected ? (
           <div>
